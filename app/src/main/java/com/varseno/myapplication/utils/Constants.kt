@@ -6,7 +6,7 @@ package com.varseno.myapplication.utils
 class Constants {
     companion object {
 
-        val BASE_URL:String = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key="
+        val BASE_URL:String = "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?"
 
         val NETWORK_TIMEOUT:Int =3000
 
