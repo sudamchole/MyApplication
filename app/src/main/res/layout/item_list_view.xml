@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content">
+
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/textView_tittle" android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewDatePublished" android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView_tittle"/>
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="#d1d1d1" android:layout_marginTop="8dp"
+          app:layout_constraintTop_toBottomOf="@+id/textViewDatePublished" app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"/>
+</android.support.constraint.ConstraintLayout>

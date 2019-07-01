@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Search">
+        <menu>
+        <item
+                android:id="@+id/nav_search_article"
+                android:title="@string/menu_search_article"/>
+        </menu>
+        </item>
+    </group>
+    <item android:title="Popular">
+        <menu>
+            <item
+                    android:id="@+id/nav_most_viewed"
+                    android:title="@string/menu_most_viewed"/>
+            <item
+                    android:id="@+id/nav_most_shared"
+                    android:title="@string/menu_most_shared"/>
+            <item
+                    android:id="@+id/nav_most_emailed"
+                    android:title="@string/menu_most_emailed"/>
+        </menu>
+    </item>
+
+</menu>
