@@ -15,6 +15,8 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
+        setTitle(resources.getString(R.string.search))
+
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.getItemId()) {
