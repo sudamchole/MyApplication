@@ -151,14 +151,6 @@ class MainActivity : AppCompatActivity() {
                 else -> navItemIndex = 0
             }
 
-            //Checking if the item is in checked state or not, if not make it in checked state
-            if (menuItem.isChecked) {
-                menuItem.isChecked = false
-            } else {
-                menuItem.isChecked = true
-            }
-          //  menuItem.isChecked = true
-
             loadHomeFragment()
 
             return@OnNavigationItemSelectedListener true
@@ -236,7 +228,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun selectNavMenu() {
 
-        navView!!.getMenu().getItem(navItemIndex).setChecked(true)
+        if (navItemIndex<navView.menu.size()){
+            navView!!.getMenu().getItem(navItemIndex).setChecked(true)
+        }else {
+
+        }
     }
 
     private fun setToolbarTitle() {
