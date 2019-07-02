@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+    <item>Most Viewed</item>
+    <item>Shared</item>
+    <item>Emailed</item>
+    </string-array>
+</resources>

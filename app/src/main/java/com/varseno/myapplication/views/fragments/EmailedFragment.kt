@@ -17,7 +17,8 @@ import com.varseno.myapplication.models.MostView
 import com.varseno.myapplication.views.adapters.ArticleAdapter
 import java.nio.channels.Selector
 
-class SharedFragment : Fragment() {
+class EmailedFragment : Fragment() {
+
     var adapter: ArticleAdapter? = null
     lateinit var mLayoutManager: LinearLayoutManager
     var articleList: List<MostView.Result>? = null
@@ -30,8 +31,8 @@ class SharedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_shared, container, false)
-        recyclerView = view.findViewById(R.id.recyclerSharedView);
+        val view = inflater.inflate(R.layout.fragment_emailed, container, false)
+        recyclerView = view.findViewById(R.id.recyclerEmailedView);
         mLayoutManager = LinearLayoutManager(activity)
         model = ArticleViewModel()
         model.getArticles().observe(this, object : Observer<List<MostView.Result>> {
@@ -42,7 +43,7 @@ class SharedFragment : Fragment() {
                 recyclerView.adapter = adapter
             }
         })
-        return  view
+        return view
     }
 
 }

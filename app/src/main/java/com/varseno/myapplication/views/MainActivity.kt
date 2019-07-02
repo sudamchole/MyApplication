@@ -24,6 +24,10 @@ import android.view.View
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 
+
+
+
+
 class MainActivity : AppCompatActivity() {
 
     companion object {
@@ -31,17 +35,17 @@ class MainActivity : AppCompatActivity() {
         var navItemIndex = 0
 
         // tags used to attach the fragments
-        private val TAG_POPULAR = "popular"
-        private val TAG_SHARED = "shared"
-        private val TAG_EMAILED = "emailed"
+         val TAG_POPULAR = "popular"
+         val TAG_SHARED = "shared"
+         val TAG_EMAILED = "emailed"
+
 
         var CURRENT_TAG = TAG_POPULAR
     }
 
-    var activeFragment = ""
+
     // flag to load home fragment when user presses back key
     private val shouldLoadHomeFragOnBackPress = true
-
     // toolbar titles respected to selected nav menu item
     private var activityTitles: Array<String>? = null
 
@@ -87,6 +91,21 @@ class MainActivity : AppCompatActivity() {
 
         // set toolbar title
         setToolbarTitle()
+// Sometimes, when fragment has huge data, screen seems hanging
+        // when switching between navigation menus
+        // So using runnable, the fragment is loaded with cross fade effect
+        // This effect can be seen in GMail app
+
+            // update the main content by replacing fragments
+            val fragment = getHomeFragment()
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.setCustomAnimations(
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
+            fragmentTransaction.replace(R.id.container, fragment, CURRENT_TAG)
+            fragmentTransaction.commitAllowingStateLoss()
+
 
         // if user select the current navigation menu again, don't do anything
         // just close the navigation drawer
@@ -95,14 +114,7 @@ class MainActivity : AppCompatActivity() {
 
             return
         }
-        val fragment = getHomeFragment()
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(
-            android.R.anim.fade_in,
-            android.R.anim.fade_out
-        )
-        fragmentTransaction.replace(R.id.container, fragment, CURRENT_TAG)
-        fragmentTransaction.commitAllowingStateLoss()
+
         //Closing drawer on item click
         drawerLayout.closeDrawers()
 
@@ -129,7 +141,8 @@ class MainActivity : AppCompatActivity() {
                     navItemIndex = 2
                     CURRENT_TAG = TAG_EMAILED
                 }
-                R.id.nav_search_article -> {
+
+               R.id.nav_search_article -> {
                     // launch new intent instead of loading fragment
                     startActivity(Intent(this@MainActivity, SearchActivity::class.java))
                     drawerLayout.closeDrawers()
@@ -144,7 +157,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 menuItem.isChecked = true
             }
-            menuItem.isChecked = true
+          //  menuItem.isChecked = true
 
             loadHomeFragment()
 
@@ -204,7 +217,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        if (navItemIndex == 0) {
+            getMenuInflater().inflate(R.menu.main, menu);
+        }
         return true
     }
 
@@ -220,6 +235,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun selectNavMenu() {
+
         navView!!.getMenu().getItem(navItemIndex).setChecked(true)
     }
 
@@ -241,6 +257,7 @@ class MainActivity : AppCompatActivity() {
                 // emailed
                 return EmailedFragment()
             }
+
             else -> return MostViewedFragment()
         }
     }

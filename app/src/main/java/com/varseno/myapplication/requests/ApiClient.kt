@@ -12,19 +12,19 @@ interface ApiClient {
     companion object {
 
         //var BASE_URL = "https://simplifiedcoding.net/demos/"
-        var BASE_URL = "https://api.nytimes.com/svc/"
+        var BASE_URL = "https://api.nytimes.com/svc/mostpopular/v2/"
         var API_KEY="bbqf8LXJ4pbCb3fGqAw8X5EsFMkr5RRX"
     }
 
-    @GET("mostpopular/v2/viewed/1.json")
+    @GET("viewed/1.json")
     fun getArticles(): Call<JsonObject>
 
 
-    @GET("mostpopular/v2/viewed/1.json")
+    @GET("shared/1/facebook.json")
     fun getSharedArticles(): Call<JsonObject>
 
 
-    @GET("mostpopular/v2/viewed/1.json")
+    @GET("emailed/7.json")
     fun getEmails(): Call<JsonObject>
 
 

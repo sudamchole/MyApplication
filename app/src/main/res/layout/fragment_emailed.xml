@@ -7,11 +7,9 @@
              android:background="@android:color/white"
              tools:context=".views.fragments.EmailedFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerEmailedView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Email"
-    android:layout_gravity="center"/>
+            android:layout_height="wrap_content"/>
 
 </FrameLayout>

@@ -16,8 +16,6 @@ import com.varseno.myapplication.models.MostView
 import java.nio.channels.Selector
 
 
-
-
 class MostViewedFragment : Fragment() {
 
     var adapter: ArticleAdapter? = null
@@ -32,11 +30,10 @@ class MostViewedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-      val  view:View = inflater.inflate(R.layout.fragment_most_viewed, container, false)
-        recyclerView =view.findViewById(R.id.recyclerView);
+        val view: View = inflater.inflate(R.layout.fragment_most_viewed, container, false)
+        recyclerView = view.findViewById(R.id.recyclerView);
         mLayoutManager = LinearLayoutManager(activity)
-        Toast.makeText(requireContext(),"This is called",Toast.LENGTH_LONG).show()
-        model= ArticleViewModel()
+        model = ArticleViewModel()
         model.getArticles().observe(this, object : Observer<List<MostView.Result>> {
             override fun onChanged(articleList: List<MostView.Result>?) {
                 // set Data to adapter here.

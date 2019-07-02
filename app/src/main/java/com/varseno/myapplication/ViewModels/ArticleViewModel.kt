@@ -11,11 +11,13 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.varseno.myapplication.models.MostView
 import com.varseno.myapplication.requests.ApiClient
+import com.varseno.myapplication.views.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import java.util.*
 
 
 /**
@@ -24,7 +26,6 @@ import okhttp3.OkHttpClient
 class ArticleViewModel: ViewModel() {
     //this is the data that we will fetch asynchronously
     private var articleList: MutableLiveData<List<MostView.Result>>? = null
-
     //we will call this method to get the data
     fun getArticles(): LiveData<List<MostView.Result>> {
         //if the list is null
@@ -59,10 +60,15 @@ class ArticleViewModel: ViewModel() {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
         val api = retrofit.create(ApiClient::class.java)
-        val call = api.getArticles()
-
+        var call:Call<*>
+        if (MainActivity.CURRENT_TAG=="emailed") {
+            call = api.getEmails()
+        }else if (MainActivity.CURRENT_TAG=="shared") {
+             call = api.getSharedArticles()
+        }else{
+            call = api.getArticles()
+        }
 
         call.enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -74,6 +80,8 @@ class ArticleViewModel: ViewModel() {
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Log.d("TAG", t.toString())
             }
+
+           /******** uncomment this code if response is Json Array**********/
 
            /* override fun onResponse(call: Call<List<MostView.Result>>, response: Response<List<MostView.Result>>) {
 
